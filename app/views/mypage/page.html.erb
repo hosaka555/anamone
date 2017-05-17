@@ -1,0 +1,24 @@
+<h3>案件</h3>
+ <% @requests.each do |request| %>
+　　　<% if request.user_id === 1 %>
+<p><%= link_to request.title,view_path(request.id)%></p>
+    　<% end %>
+<% end %>
+
+<h3>振込予定金額</h3>
+<% total = 0%>
+<%Request.where(:kind => 1).each do |request|%>
+<% total += request.money%>
+<%end%>
+<%=total%>
+
+ <% @requests.each do |request| %>
+　　　<% if request.kind === 1 %>
+<%= request.money +=request.money  %>
+<% provide :request, 'money' %>
+    　<% end %>
+    
+<% end %>
+　
+<h3>支払い予定金額</h3>
+

@@ -1,0 +1,22 @@
+<!--詳細の表示-->
+<h1><%= @request.title %></h1>
+
+<h2>内容</h2>
+<p><%= @request.content%></p>
+<h3>金額</h3>
+<p><%=@request.money %>円</p>
+ <tr>
+        <td><%= image_tag @request.image %></td>
+</tr>
+<% if @user == current_user%>
+<%= @request.id %>
+ <%= link_to "キャンセル", cancel_view_path(@request.id), :method => "PATCH"%> 
+
+<% end %>
+<% if @request.flag == 0%>
+
+  <%= link_to "引き受ける", view_path(@request.id), :method => "PATCH", :style => "float:right"%> 
+ <% else %>
+  <p>マッチ完了</p>
+  <%= @match.user_id %>さんが引き受けてくれました。
+<% end %>
