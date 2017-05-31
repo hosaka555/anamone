@@ -30,3 +30,21 @@ production:
   pool: 5
 
 =end
+
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  encoding: unicode
+
+development:
+  <<: *default
+  database: anemone_development
+
+test:
+  <<: *default
+  database: anemone_test
+
+production:
+  <<: *default
+  database: anemone_production
